@@ -93,6 +93,7 @@ class MyApp extends StatelessWidget {
     );
   }
 
+  // ボタンのカラムを作成
   Column _buildButtonColumn(Color color, IconData icon, String label) {
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -110,4 +111,11 @@ class MyApp extends StatelessWidget {
       ],
     );
   }
+}
+
+class FavoriteWidget extends StatefulWidget {
+  const FavoriteWidget({super.key});
+
+  @override
+  State<FavoriteWidget> createState() => _FavoriteWidgetState();
 }
