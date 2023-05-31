@@ -119,3 +119,44 @@ class FavoriteWidget extends StatefulWidget {
   @override
   State<FavoriteWidget> createState() => _FavoriteWidgetState();
 }
+
+class _FavoriteWidgetState extends State<FavoriteWidget> {
+  bool _isFavorite = true;
+  int _favoriteCount = 41;
+
+  // お気に入りボタンを押した時の処理
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          padding: const EdgeInsets.all(0),
+          child: IconButton(
+            padding: const EdgeInsets.all(0),
+            icon: (_isFavorite
+                ? const Icon(Icons.star)
+                : const Icon(Icons.star_border)),
+            color: Colors.red[500],
+            onPressed: () {
+              // お気に入りボタンを押した時の処理
+              setState(() {
+                if (_isFavorite) {
+                  _favoriteCount -= 1;
+                  _isFavorite = false;
+                } else {
+                  _favoriteCount += 1;
+                  _isFavorite = true;
+                }
+              });
+            },
+          ),
+        ),
+        SizedBox(
+          width: 18,
+          child: Text('$_favoriteCount'),
+        ),
+      ],
+    );
+  }
+}
