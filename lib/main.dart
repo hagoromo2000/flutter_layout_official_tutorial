@@ -38,11 +38,7 @@ class MyApp extends StatelessWidget {
             ),
           ),
           /*3*/
-          Icon(
-            Icons.star,
-            color: Colors.red[500],
-          ),
-          const Text('41'),
+          const FavoriteWidget(),
         ],
       ),
     );
@@ -124,7 +120,19 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
   bool _isFavorite = true;
   int _favoriteCount = 41;
 
-  // お気に入りボタンを押した時の処理
+  void _toggleFavorite() {
+    // お気に入りボタンを押した時の処理
+    setState(() {
+      if (_isFavorite) {
+        _favoriteCount -= 1;
+        _isFavorite = false;
+      } else {
+        _favoriteCount += 1;
+        _isFavorite = true;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -138,18 +146,7 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
                 ? const Icon(Icons.star)
                 : const Icon(Icons.star_border)),
             color: Colors.red[500],
-            onPressed: () {
-              // お気に入りボタンを押した時の処理
-              setState(() {
-                if (_isFavorite) {
-                  _favoriteCount -= 1;
-                  _isFavorite = false;
-                } else {
-                  _favoriteCount += 1;
-                  _isFavorite = true;
-                }
-              });
-            },
+            onPressed: _toggleFavorite,
           ),
         ),
         SizedBox(
